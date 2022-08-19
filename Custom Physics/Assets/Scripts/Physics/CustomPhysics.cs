@@ -5,11 +5,12 @@ using System;
 
 public class CustomPhysics:MonoBehaviour
 {
-    public static Vector gravity;
-    public static Vector velocity;
+    public static Vector Gravity;
+    [SerializeField] float _gravity;
+    public static Vector Velocity;
     public static Vector circleVelocity;
     public static Vector force;
-    public static Vector acceleration;
+    public static Vector Acceleration;
     public static Vector circleAcceleration;
     public static float Radius;
     public static float mass;
@@ -18,11 +19,17 @@ public class CustomPhysics:MonoBehaviour
     private void Start()
     {
         objectTransform = GetComponent<Transform>();
+        //Gravity = new Vector(0, -1*_gravity, 0);
     }
- //   private void Update()
- //   {
- //       LinearVelocity();
- //   }
+
+
+
+    private void Update()
+    {
+        //LinearVelocity();
+        Vector3 gravity = new Vector3(0, -_gravity * Time.deltaTime, 0);
+        transform.position += gravity;
+    }
     public void CircleVelocity()
     {
         circleVelocity = new Vector(objectTransform.position.x, objectTransform.position.y, objectTransform.position.z);
@@ -40,7 +47,7 @@ public class CustomPhysics:MonoBehaviour
 
     public void LinearVelocity() 
     {
-        velocity = new Vector(objectTransform.position.x, objectTransform.position.y, objectTransform.position.z);
-        Debug.Log("Velocity: " + velocity.X+ " "+velocity.Y+" "+ velocity.Z+ " "+velocity.Angle);
+        Velocity = new Vector(objectTransform.position.x, objectTransform.position.y, objectTransform.position.z);
+        Debug.Log("Velocity: " + Velocity.X+ " "+Velocity.Y+" "+ Velocity.Z+ " "+Velocity.Angle);
     }
 }
